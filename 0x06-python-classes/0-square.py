@@ -1,14 +1,7 @@
 #!/usr/bin/python3
+""" Square module:
+    define class square.
+"""
 class Square:
-    """Represents an empty square.
-    
-
-    Attributes
-    ----------
-    no atribute
-
-    Methods
-    -------
-    no method
-    """
+    """Represents an empty square."""
     pass
