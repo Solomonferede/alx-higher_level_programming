@@ -44,6 +44,6 @@ class Square:
         """defining my_print method which prints the size"""
         if self.__size == 0:
             print('\n')
-        else
+        else:
             for i in range(self.__size):
                 print('#' * self.__size)
