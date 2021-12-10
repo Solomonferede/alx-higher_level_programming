@@ -12,6 +12,8 @@ class Square:
         __init__: initialize the atributes
         area: determine the area of the square instance
         size: retrive the size
+        my_print: That prints in stdout the square with the character #:
+
 
     """
 
