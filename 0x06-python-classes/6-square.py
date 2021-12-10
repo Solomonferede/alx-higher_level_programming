@@ -27,23 +27,6 @@ class Square:
         """define a getter method"""
         return self.__size
 
-    @property
-    def position(self):
-        """Defining a getter method for __postion"""
-        return self.__position
-
-    @position.setter
-    def position(self, value):
-        """Define Setter method for __postion"""
-        if len(value) != 2 or not isinstance(value, tuple):
-            raise TypeError("position must be a tuple of 2 positive integers")
-        elif not isinstance(value[0], int) or not isinstance(value[1], int):
-            raise TypeError("position must be a tuple of 2 posetive integers")
-        elif value[1] < 0 or value[0] < 0:
-            raise ValueError("position must be a tuple of 2 positive integers")
-        else:
-            self.__position = value
-
     @size.setter
     def size(self, value):
         """Define a setter method"""
@@ -53,6 +36,23 @@ class Square:
             raise ValueError("size must be >= 0")
         else:
             self.__size = value
+
+    @property
+    def position(self):
+        """Defining a getter method for __postion"""
+        return self.__position
+
+    @position.setter
+    def position(self, value):
+        """Define Setter method for __postion"""
+        if not isinstance(value, tuple) or len(value) != 2:
+            raise TypeError("position must be a tuple of 2 positive integers")
+        elif not isinstance(value[0], int) or not isinstance(value[1], int):
+            raise TypeError("position must be a tuple of 2 posetive integers")
+        elif value[1] < 0 or value[0] < 0:
+            raise ValueError("position must be a tuple of 2 positive integers")
+        else:
+            self.__position = value
 
     def area(self):
         """Defining the area method"""
