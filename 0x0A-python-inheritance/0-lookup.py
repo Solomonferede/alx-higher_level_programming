@@ -5,5 +5,10 @@ Defin a method lookup
 
 
 def lookup(obj):
-    """Defining lookup function returning the list of atributes of a class"""
+    """Defining lookup function returning the list of atributes of a class
+
+    Args:
+        obj - object to look in the atributes and methods
+        """
+
     return dir(obj)
