@@ -1,5 +1,7 @@
 #!/use/bin/python3
-"""module 0-lookup"""
+"""module 0-lookup
+Defin a method lookup
+"""
 
 
 def lookup(obj):
