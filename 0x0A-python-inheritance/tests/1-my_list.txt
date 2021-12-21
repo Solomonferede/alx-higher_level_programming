@@ -19,7 +19,7 @@ my_list1.print_sorted()
 >>> my_list1
 [2, 4, 9, 3]
 
->>> my_list2 = MyList([8, 5, 10]
+>>> my_list2 = MyList([8, 5, 10])
 
 >>> my_list2
 [8, 5, 10]
@@ -30,7 +30,7 @@ my_list1.print_sorted()
 >>> my_list2
 [8, 5, 10]
 
->>> my_list3 = MyList(['x', 'e', 'a', 'k']
+>>> my_list3 = MyList(['x', 'e', 'a', 'k'])
 
 >>> my_list3
 ['x', 'e', 'a', 'k']
