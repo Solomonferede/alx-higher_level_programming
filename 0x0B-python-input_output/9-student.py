@@ -11,16 +11,15 @@ class Student(obj):
     Methods:
         __init__: Initialize the instance atribute
         to_json: return dictionary representation of a class
-        """
-
-    def __init__(self, first_name, last_name, age):
-        """Initialize the value of instance atribute when created the instance
 
         args:
             first_name - The first name of the student
             last_name - The last name of the student
             age - Age of the studnt
         """
+
+    def __init__(self, first_name, last_name, age):
+        """Initialize the value of public atribute when created the instance"""
 
         self.first_name = first_name
         self.last_name = last_name
