@@ -1,8 +1,7 @@
 #!/usr/bin/python3
-""" The 9-student module
-Create a class Student with public instance atribute and initialize the value
-
-It define a method to retrieve dictionary representation of the class
+"""The 9-student module
+Create a class Student and define a method to retrieve dictionary 
+representation of the class
 """
 
 
