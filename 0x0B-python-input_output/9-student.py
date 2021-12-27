@@ -1,13 +1,19 @@
 #!/usr/bin/python3
 """ The 9-student module
-Create a class Student with public instance atribute and
-initialize the value 
-It define a method to retrieve dictionary representation
-of the class
+Create a class Student with public instance atribute and initialize the value
+
+It define a method to retrieve dictionary representation of the class
 """
 
 
 class Student(obj):
+    """Defination of student class
+
+    Methods:
+        __init__: Initialize the instance atribute
+        to_json: return dictionary representation of a class
+        """
+
     def __init__(self, first_name, last_name, age):
         """Initialize the value of instance atribute when created the instance
 
@@ -17,11 +23,11 @@ class Student(obj):
             age - Age of the studnt
         """
 
-            self.first_name = first_name
-            self.last_name = last_name
-            self.age = age
+        self.first_name = first_name
+        self.last_name = last_name
+        self.age = age
 
     def to_json(self)
-    """define a method which returns the dictionary representation of a class"""
+    """Method which returns the dictionary representation of a class"""
 
     return obj.__dic__
