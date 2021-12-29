@@ -114,3 +114,12 @@ class Rectangle(Base):
 
         for H in range(self.__height):
             print(self.__width * '#')
+
+    def display(self):
+        """Display the Rectangle instance with #"""
+
+        for down in range(self.__y):
+            print("\n", end="")
+        for H in range(self.__height):
+            print(self.__x * " ", end="")
+            print(self.__width * '#')
