@@ -98,6 +98,12 @@ class Rectangle(Base):
         else:
             self.__y = value
 
+    def __str__(self):
+        """Represent the class object as a string"""
+
+        return '[Rectangle] (' + str(self.id) + ') ' + str(self.__x) +\
+                '/' + str(self.__y) + ' - ' + str(self.__width) + '/' + str(self.__height)
+
     def area(self):
         """Compute and return the area of a rectangle"""
 
