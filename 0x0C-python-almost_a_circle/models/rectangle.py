@@ -3,7 +3,6 @@
 Define a class rectangle inherited from Base class.
 """
 from models.base import Base
-import sys
 
 
 class Rectangle(Base):
@@ -137,22 +136,29 @@ class Rectangle(Base):
             if arg_len >= 1:
                 self.id = args[0]
             if arg_len >= 2:
-                self.__width = args[1]
+                self.width = args[1]
             if arg_len >= 3:
-                self.__height = args[2]
+                self.height = args[2]
             if arg_len >= 4:
-                self.__x = args[3]
+                self.x = args[3]
             if arg_len >= 5:
-                self.__y = args[4]
+                self.y = args[4]
         else:
             for key, value in kwargs.items():
                 if key == 'id':
                     self.id = value
                 if key == 'width':
-                    self.__width = value
+                    self.width = value
                 if key == 'height':
-                    self.__height = value
+                    self.height = value
                 if key == 'x':
-                    self.__x = value
+                    self.x = value
                 if key == 'y':
-                    self.__y = value
+                    self.y = value
+
+    def to_dictionary(self):
+        """A function that returns the dictionary representation of a Rectangle"""
+        my_dict = {'id': self.id, 'width': self.__width,
+                   'height': self.__height, 'x': self.__x, 'y': self.__y}
+        return my_dict
+
