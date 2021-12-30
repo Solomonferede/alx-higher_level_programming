@@ -3,6 +3,7 @@
 Define a class rectangle inherited from Base class.
 """
 from models.base import Base
+import sys
 
 
 class Rectangle(Base):
@@ -96,13 +97,16 @@ class Rectangle(Base):
         elif value < 0:
             raise ValueError("y must be >= 0")
         else:
-            self.__y = value
+                self.__y = value
 
     def __str__(self):
         """Represent the class object as a string"""
 
-        return '[Rectangle] (' + str(self.id) + ') ' + str(self.__x) +\
-                '/' + str(self.__y) + ' - ' + str(self.__width) + '/' + str(self.__height)
+        s = "[Rectangle] ({}) {}/{} - {}/{} ".format(
+                str(self.id), str(self.__x),
+                str(self.__y), str(self.__width),
+                str(self.__height))
+        return s
 
     def area(self):
         """Compute and return the area of a rectangle"""
@@ -123,3 +127,32 @@ class Rectangle(Base):
         for H in range(self.__height):
             print(self.__x * " ", end="")
             print(self.__width * '#')
+
+    def update(self, *args, **kwargs):
+        """Assign an argument to each atribute"""
+
+        arg_len = len(args)
+
+        if arg_len > 0:
+            if arg_len >= 1:
+                self.id = args[0]
+            if arg_len >= 2:
+                self.__width = args[1]
+            if arg_len >= 3:
+                self.__height = args[2]
+            if arg_len >= 4:
+                self.__x = args[3]
+            if arg_len >= 5:
+                self.__y = args[4]
+        else:
+            for key, value in kwargs.items():
+                if key == 'id':
+                    self.id = value
+                if key == 'width':
+                    self.__width = value
+                if key == 'height':
+                    self.__height = value
+                if key == 'x':
+                    self.__x = value
+                if key == 'y':
+                    self.__y = value
