@@ -4,6 +4,9 @@ Define a class Base that initialize and has has 1 private atribute.
 """
 
 
+import json
+
+
 class Base(object):
     """DEfine the Base class
 
@@ -29,3 +32,11 @@ class Base(object):
         else:
             Base.__nb_objects += 1
             self.id = Base.__nb_objects
+
+    def to_json_string(list_dictionaries):
+        """It return the json string representation of list dictionary"""
+
+        if list_dictionaries is None:
+            return json.dumps([])
+        else:
+            return json.dumps(list_dictionaries)
