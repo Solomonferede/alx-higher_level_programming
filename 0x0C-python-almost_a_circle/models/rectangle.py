@@ -136,25 +136,25 @@ class Rectangle(Base):
             if arg_len >= 1:
                 self.id = args[0]
             if arg_len >= 2:
-                self.width = args[1]
+                self.__width = args[1]
             if arg_len >= 3:
-                self.height = args[2]
+                self.__height = args[2]
             if arg_len >= 4:
-                self.x = args[3]
+                self.__x = args[3]
             if arg_len >= 5:
-                self.y = args[4]
+                self.__y = args[4]
         else:
             for key, value in kwargs.items():
                 if key == 'id':
                     self.id = value
                 if key == 'width':
-                    self.width = value
+                    self.__width = value
                 if key == 'height':
-                    self.height = value
+                    self.__height = value
                 if key == 'x':
-                    self.x = value
+                    self.__x = value
                 if key == 'y':
-                    self.y = value
+                    self.__y = value
 
     def to_dictionary(self):
         """A function that returns the dictionary representation of a Rectangle"""
