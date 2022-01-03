@@ -1,34 +1,29 @@
 #!/usr/bin/python3
-"""The base module
-Define a class Base that initialize and has has 1 private atribute.
+"""Module base.
+Defines a Base class for other classes in the project.
 """
 
-
-import csv
-import os
 import json
+import os
+import csv
 
 
-class Base(object):
-    """DEfine the Base class
-
-    Methods:
-        __init__:initialize the atribute of the instance
-
-
-    Atributes:
-        __nb_objects( int): The number of instances created
-        """
+class Base:
+    """Class with:
+    Private class attribute: __nb_objects
+    """
 
     __nb_objects = 0
 
     def __init__(self, id=None):
-        """Initializing the parameter of an instance of the class
-        Parametrs:
-            id(int): asign the public instance attribute id with this
-            argument value
+        """Initialization of a Base instance.
+
+        Args:
+            - id: id of the instance
         """
 
+        if type(id) != int and id is not None:
+            raise TypeError("id must be an integer")
         if id is not None:
             self.id = id
         else:
@@ -37,45 +32,79 @@ class Base(object):
 
     @staticmethod
     def to_json_string(list_dictionaries):
-        """It return the json string representation of list dictionary"""
+        """Returns a JSON representation of list_dictionaries.
+
+        Args:
+            - list_dictionaries: list of dicts
+
+        Returns: JSON representation of the list
+        """
 
         if list_dictionaries is None or list_dictionaries == []:
-            return json.dumps([])
-        else:
-            return json.dumps(list_dictionaries)
+            return "[]"
+        if (type(list_dictionaries) != list or
+           not all(type(x) == dict for x in list_dictionaries)):
+            raise TypeError("list_dictionaries must be a list of dictionaries")
+        return json.dumps(list_dictionaries)
 
     @classmethod
     def save_to_file(cls, list_objs):
-        """writes the JSON string representation of list_objs to a file:"""
-        
-        file_name = cls.__name__ + ".json"
-        json_string = cls.to_json_string([list.to_dictionary() for list in list_objs])
-        with open(file_name, mode='w', encoding='utf-8') as f:
-            f.write(json_string)
+        """Writes the JSON string representation of
+        list_objs to a file.
+
+        Args:
+            - list_objs: list of instances who inherits of Base
+        """
+        """
+        if type(list_objs) != list and list_objs is not None:
+            raise TypeError("list_objs must be a list of instances")
+        if any(issubclass(type(x), Base) is False for x in list_objs):
+            raise TypeError("list_objs must be a list of instances")
+        """
+        if list_objs is None or list_objs == []:
+            jstr = "[]"
+        else:
+            jstr = cls.to_json_string([o.to_dictionary() for o in list_objs])
+        filename = cls.__name__ + ".json"
+        with open(filename, 'w') as f:
+                f.write(jstr)
 
     @staticmethod
     def from_json_string(json_string):
-        """It recieve json string representation as argument 
-        and Returns the equivalent list:"""
+        """Returns the list of the JSON string representation json_string.
 
-        if json_string is None or json_string == '':
-            return []
-        else:
-            return json.loads(json_string)
+        Args:
+            - json_string: string to convert to list
+        """
+
+        l = []
+        if json_string is not None and json_string != '':
+            if type(json_string) != str:
+                raise TypeError("json_string must be a string")
+            l = json.loads(json_string)
+        return l
 
     @classmethod
     def create(cls, **dictionary):
-        """It returns an instance with all attributes already set:"""
+        """Returns an instance with all attributes already set.
 
-        dummy = cls(1, 1)
+        Args:
+            - dictionary: used as **kwargs
+
+        Returns: instance created
+        """
+        if cls.__name__ == 'Rectangle':
+            dummy = cls(1, 1)
+        elif cls.__name__ == 'Square':
+            dummy = cls(1)
         dummy.update(**dictionary)
         return dummy
 
     @classmethod
     def load_from_file(cls):
-        """Returns a list of instances from the json file:"""
+        """Returns a list of instances."""
 
-        filename = cls.__name + '.json'
+        filename = cls.__name__ + ".json"
         l = []
         list_dicts = []
         if os.path.exists(filename):
@@ -136,3 +165,49 @@ class Base(object):
                                 setattr(i, fields[j], int(e))
                         l.append(i)
         return l
+
+    @staticmethod
+    def draw(list_rectangles, list_squares):
+        """Opens a Turtle window and draws
+        rectangles and squares.
+
+        Args:
+            - list_rectangles: list of Rectangle instances
+            - list_squares: list of Square instances
+        """
+
+        import turtle
+        import time
+        from random import randrange
+
+        t = turtle.Turtle()
+        t.color("beige")
+        turtle.bgcolor("violet")
+        t.shape("square")
+        t.pensize(8)
+
+        for i in (list_rectangles + list_squares):
+            t.penup()
+            t.setpos(0, 0)
+            turtle.Screen().colormode(255)
+            t.pencolor((randrange(255), randrange(255), randrange(255)))
+            Base.draw_rect(t, i)
+            time.sleep(1)
+        time.sleep(5)
+
+    @staticmethod
+    def draw_rect(t, rect):
+        """Helper method that draws a Rectangle
+        or Square.
+        """
+
+        t.penup()
+        t.setpos(rect.x, rect.y)
+        t.pendown()
+        t.forward(rect.width)
+        t.left(90)
+        t.forward(rect.height)
+        t.left(90)
+        t.forward(rect.width)
+        t.left(90)
+        t.forward(rect.height)
